@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+set -eu
+
+# Variables
+key_name="bcitkey"
+profile_name="playground-cli"
+region="us-east-2"
+public_key_path="~/.ssh/${key_name}.pub"
+
+# Import the key pair
+aws ec2 import-key-pair \
+  --key-name "$key_name" \
+  --public-key-material fileb://"$public_key_path" \
+  --profile "$profile_name" \
+  --region "$region"
